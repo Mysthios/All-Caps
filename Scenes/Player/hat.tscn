@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c1kdguupcfj5a"]
+
+[ext_resource type="Script" uid="uid://cho7b8h3h2t5b" path="res://Scripts/Player/Hat.gd" id="1_p780w"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tfuws"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 0.8
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lcj1n"]
+height = 0.08
+radius = 0.15
+
+[node name="Hat" type="RigidBody3D" unique_id=904816433]
+script = ExtResource("1_p780w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=841491016]
+mesh = SubResource("CylinderMesh_tfuws")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=143073553]
+shape = SubResource("CylinderShape3D_lcj1n")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=963895140]
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0.1, 0.3)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

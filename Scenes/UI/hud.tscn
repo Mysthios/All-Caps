@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://djmwollr3wivn"]
+
+[ext_resource type="Script" uid="uid://ds2b28qyr1bnc" path="res://Scripts/Managers/hud.gd" id="1_sprlj"]
+
+[sub_resource type="SystemFont" id="SystemFont_11jds"]
+
+[sub_resource type="Theme" id="Theme_mnuin"]
+default_font = SubResource("SystemFont_11jds")
+
+[sub_resource type="FontFile" id="FontFile_lcj1n"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfuws"]
+line_spacing = 10.0
+font = SubResource("FontFile_lcj1n")
+outline_size = 2
+shadow_size = 3
+
+[node name="HUD" type="CanvasLayer" unique_id=903617167]
+script = ExtResource("1_sprlj")
+
+[node name="Label" type="Label" parent="." unique_id=1402025943]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme = SubResource("Theme_mnuin")
+label_settings = SubResource("LabelSettings_tfuws")
+horizontal_alignment = 1
+vertical_alignment = 1
