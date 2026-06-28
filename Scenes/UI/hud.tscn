@@ -2,11 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ds2b28qyr1bnc" path="res://Scripts/Managers/hud.gd" id="1_sprlj"]
 
-[sub_resource type="SystemFont" id="SystemFont_11jds"]
-
-[sub_resource type="Theme" id="Theme_mnuin"]
-default_font = SubResource("SystemFont_11jds")
-
 [sub_resource type="FontFile" id="FontFile_lcj1n"]
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
@@ -41,7 +36,6 @@ offset_top = 50.0
 offset_right = 20.0
 offset_bottom = 73.0
 grow_horizontal = 2
-theme = SubResource("Theme_mnuin")
 label_settings = SubResource("LabelSettings_tfuws")
 horizontal_alignment = 1
 vertical_alignment = 1

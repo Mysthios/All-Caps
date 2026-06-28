@@ -5,12 +5,14 @@ const JUMP_VELOCITY = 4.5
 const MOUSE_SENSITIVITY = 0.002
 const HAT_SPEED = 8.0
 const CAM_OFFSET = Vector3(0, 1.5, 3.5)
+const STEP_HEIGHT: float = 0.3
 
 @onready var camera_holder = $CameraHolder
 @onready var camera = $CameraHolder/Camera3D
 @onready var hat_anchor = $HatAnchor
 @onready var anim_player = $Superhero_Male_FullBody/AnimationPlayer
 @onready var hud = $"../HUD"  # sesuaikan path kalau perlu
+@onready var step_cast = $StepCast
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var hat_instance = null
@@ -27,7 +29,7 @@ func _unhandled_input(event):
 		if not hat_out and possessed_enemy == null:
 			# Mode normal — mouse look player
 			rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
-			camera_holder.rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
+			camera_holder.rotate_x(event.relative.y * MOUSE_SENSITIVITY)
 			camera_holder.rotation.x = clamp(camera_holder.rotation.x, -1.2, 1.2)
 		elif not hat_out and possessed_enemy != null:
 			# Mode possess — mouse look enemy
@@ -119,7 +121,7 @@ func _on_possess_expired():
 	hud.hide_possess_timer()
 	if possessed_enemy:
 		possessed_enemy._die()
-		possessed_enemy = null  # null dulu baru pindah kamera
+		possessed_enemy = null
 	camera.reparent(camera_holder)
 	camera.position = Vector3.ZERO
 	camera.rotation = Vector3.ZERO
@@ -128,7 +130,7 @@ func _release_enemy():
 	hud.hide_possess_timer()
 	if possessed_enemy:
 		possessed_enemy._die()
-		possessed_enemy = null  # null dulu baru pindah kamera
+		possessed_enemy = null
 	camera.reparent(camera_holder)
 	camera.position = Vector3.ZERO
 	camera.rotation = Vector3.ZERO
@@ -192,6 +194,25 @@ func _update_animation():
 		anim_player.play("AnimPack/Jog_Fwd")
 	else:
 		anim_player.play("AnimPack/Idle")
+		
+func _handle_stairs():
+	if not is_on_floor():
+		return
+	if velocity.length() < 0.1:
+		return
+	
+	# Rotate step cast ngikut arah gerak
+	var move_dir = Vector2(velocity.x, velocity.z).normalized()
+	if move_dir.length() > 0.1:
+		step_cast.target_position = Vector3(-move_dir.x, 0.3, -move_dir.y) * 0.5
+	
+	step_cast.force_shapecast_update()
+	
+	if step_cast.is_colliding():
+		var collision_point = step_cast.get_collision_point(0)
+		var step_height = collision_point.y - global_position.y
+		if step_height > 0 and step_height <= STEP_HEIGHT:
+			velocity.y = step_height * 10.0
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -216,7 +237,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = (transform.basis * Vector3(-input_dir.x, 0, -input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -224,5 +245,6 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	_handle_stairs()
 	move_and_slide()
 	_update_animation()  # ← setelah move_and_slide

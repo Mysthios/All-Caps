@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cnnssop2w4hx1" path="res://Scripts/Player/Player.gd" id="1_uvnfx"]
 [ext_resource type="PackedScene" uid="uid://bx5q8yu2qrvcm" path="res://Assets/Models/Superhero_Male_FullBody.gltf" id="2_a3d8c"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfuws"]
-radius = 0.4
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lcj1n"]
+radius = 0.2
 height = 1.8
 
 [sub_resource type="Animation" id="Animation_ncosa"]
@@ -17701,22 +17701,28 @@ _data = {
 &"Walk_Formal": SubResource("Animation_t178t")
 }
 
-[node name="Player" type="CharacterBody3D" unique_id=795401960]
+[sub_resource type="SphereShape3D" id="SphereShape3D_lcj1n"]
+
+[node name="Player" type="CharacterBody3D" unique_id=90427826]
 script = ExtResource("1_uvnfx")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=398229132]
-shape = SubResource("CapsuleShape3D_tfuws")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=974686484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9064354, 0)
+shape = SubResource("CapsuleShape3D_lcj1n")
 
-[node name="CameraHolder" type="Node3D" parent="." unique_id=298766474]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.602)
+[node name="Superhero_Male_FullBody" parent="." unique_id=1082522987 instance=ExtResource("2_a3d8c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012390614, 0, 0.006897688)
 
-[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=869504496]
-
-[node name="HatAnchor" type="Node3D" parent="." unique_id=1499560381]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -0.3)
-
-[node name="Superhero_Male_FullBody" parent="." unique_id=495824578 instance=ExtResource("2_a3d8c")]
-transform = Transform3D(-0.9999863, 0, -0.0052364506, 0, 1, 0, 0.0052364506, 0, -0.9999863, 0, -1, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Superhero_Male_FullBody" unique_id=795522360]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Superhero_Male_FullBody" unique_id=1434346720]
 libraries/AnimPack = SubResource("AnimationLibrary_a3d8c")
+
+[node name="CameraHolder" type="Node3D" parent="." unique_id=755884120]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.5, 0.5)
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=686343779]
+
+[node name="HatAnchor" type="Node3D" parent="." unique_id=2070058136]
+
+[node name="StepCast" type="ShapeCast3D" parent="." unique_id=1714423283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79800797, 0)
+shape = SubResource("SphereShape3D_lcj1n")

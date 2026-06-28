@@ -24,9 +24,9 @@ GameManager="*uid://b2h1nxxyr71nr"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[global_group]
+[filesystem]
 
-enemies=""
+import/blender/enabled=false
 
 [input]
 

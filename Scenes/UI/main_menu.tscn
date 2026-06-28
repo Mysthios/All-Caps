@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://cvlp12a61weco"]
+
+[ext_resource type="Script" uid="uid://b77irxn5hqigk" path="res://Scripts/Managers/MainMenu.gd" id="1_5wsvm"]
+[ext_resource type="Script" uid="uid://b4tsm57eeviju" path="res://Scripts/Managers/SettingPanel.gd" id="2_i2xx2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lcj1n"]
+
+[node name="MainMenu" type="Control" unique_id=1371430491]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wsvm")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1125485229]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_lcj1n")
+
+[node name="Title" type="Label" parent="." unique_id=624607956]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 60.0
+offset_right = 962.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.78431374, 0.6627451, 0.43137255, 1)
+theme_override_font_sizes/font_size = 64
+text = "game apa hayooooooooo"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1522932536]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -32.0
+offset_right = 58.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="BtnStart" type="Button" parent="VBoxContainer" unique_id=1858685312]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.6627451, 0.43137255, 1)
+theme_override_font_sizes/font_size = 28
+text = "start !!!! Your !!!! ENGINEEEEE !!!!!!!!!"
+
+[node name="BtnOption" type="Button" parent="VBoxContainer" unique_id=1277835782]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.6627451, 0.43137255, 1)
+theme_override_font_sizes/font_size = 28
+text = "OPTION"
+
+[node name="BtnQuit" type="Button" parent="VBoxContainer" unique_id=1763343417]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.6627451, 0.43137255, 1)
+theme_override_font_sizes/font_size = 28
+text = "QUIT"
+
+[node name="SettingPanel" type="Panel" parent="." unique_id=269434171]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_i2xx2")
+
+[node name="Label" type="Label" parent="SettingPanel" unique_id=1314048388]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingPanel" unique_id=622304140]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingPanel/ScrollContainer" unique_id=1440674567]
+layout_mode = 2
+
+[node name="BtnBack" type="Button" parent="SettingPanel" unique_id=1837225105]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

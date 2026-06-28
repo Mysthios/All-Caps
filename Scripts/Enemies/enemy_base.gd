@@ -121,6 +121,8 @@ func _die():
 	current_state = State.STUNNED
 	is_possessed = false
 	is_dying = true
+	is_waiting = false        # ← reset waiting
+	current_waypoint = 0     # ← balik ke waypoint pertama
 	velocity = Vector3.ZERO
 	_set_color(Color.RED)
 	await get_tree().create_timer(5.0).timeout

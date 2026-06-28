@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dro5c227bdlp5"]
+
+[ext_resource type="PackedScene" uid="uid://b2yhue6buh3c5" path="res://Scenes/Levels/jail.tscn" id="1_dvut1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tfuws"]
+size = Vector3(10, 0.5, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mnuin"]
+size = Vector3(0.3, 10, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v44ph"]
+size = Vector3(0.3, 10, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_11jds"]
+size = Vector3(0.3, 10, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_65bdh"]
+size = Vector3(0.3, 10, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v6wy8"]
+size = Vector3(10, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6pun2"]
+size = Vector3(10, 0.5, 40)
+
+[node name="Ship" type="Node3D" unique_id=1295813440]
+
+[node name="Room1" type="Node3D" parent="." unique_id=1107509109]
+
+[node name="Ceiling" type="StaticBody3D" parent="Room1" unique_id=401307983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.271328, 6.5844173, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/Ceiling" unique_id=1570468619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.75882, -2.9588041, 9.9738455)
+mesh = SubResource("BoxMesh_tfuws")
+
+[node name="WallLeft" type="StaticBody3D" parent="Room1" unique_id=1436016850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8791943, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/WallLeft" unique_id=1538694072]
+mesh = SubResource("BoxMesh_mnuin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/WallLeft" unique_id=2096207288]
+shape = SubResource("BoxShape3D_v44ph")
+
+[node name="WallRight" type="StaticBody3D" parent="Room1" unique_id=398206714]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8788824, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/WallRight" unique_id=949347224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5730658, 0)
+mesh = SubResource("BoxMesh_11jds")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/WallRight" unique_id=1241127823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.59297, 0)
+shape = SubResource("BoxShape3D_65bdh")
+
+[node name="WallBack" type="StaticBody3D" parent="Room1" unique_id=799566221]
+visible = false
+
+[node name="WallFront" type="StaticBody3D" parent="Room1" unique_id=924164294]
+
+[node name="Jail" parent="Room1" unique_id=419574687 instance=ExtResource("1_dvut1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.020049, 2, 7.191898)
+
+[node name="Jail2" parent="Room1" unique_id=1567289430 instance=ExtResource("1_dvut1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.020049, 2, 10.195)
+
+[node name="Jail3" parent="Room1" unique_id=1656188686 instance=ExtResource("1_dvut1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.020049, 2, 4.1906385)
+
+[node name="Jail4" parent="Room1" unique_id=1387306467 instance=ExtResource("1_dvut1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.9414759, 2, 10.195)
+
+[node name="Jail5" parent="Room1" unique_id=1846828143 instance=ExtResource("1_dvut1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0044756, 2, 7.192)
+
+[node name="Jail6" parent="Room1" unique_id=1159315573 instance=ExtResource("1_dvut1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0064764, 2, 4.191)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=148221332]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1695681678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35907602, 0)
+mesh = SubResource("BoxMesh_v6wy8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=397282123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41673803, 0)
+shape = SubResource("BoxShape3D_6pun2")

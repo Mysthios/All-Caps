@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://478scb18q2k3"]
+
+[ext_resource type="PackedScene" uid="uid://di258drncq56a" path="res://Interiors A/LoafbrrAssets/Interiors_A/glb/Interiors_A.glb" id="1_cdnv1"]
+
+[node name="Interiors_A" unique_id=230235288 instance=ExtResource("1_cdnv1")]
