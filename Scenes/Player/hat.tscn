@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://c1kdguupcfj5a"]
 
 [ext_resource type="Script" uid="uid://cho7b8h3h2t5b" path="res://Scripts/Player/Hat.gd" id="1_p780w"]
-[ext_resource type="PackedScene" uid="uid://cixx6ep53cepx" path="res://Assets/cap.fbx" id="2_kt4jx"]
+[ext_resource type="PackedScene" uid="uid://db4xfh8ccer8e" path="res://Assets/Models/HAT_GLB.glb" id="2_kt4jx"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_lcj1n"]
-height = 0.08
-radius = 0.15
+[sub_resource type="SphereShape3D" id="SphereShape3D_1ht8x"]
+radius = 0.09
 
 [node name="Hat" type="RigidBody3D" unique_id=904816433]
 script = ExtResource("1_p780w")
 
-[node name="cap" parent="." unique_id=147134942 instance=ExtResource("2_kt4jx")]
-transform = Transform3D(-0.1925807, 0, 0.0539692, 0, 0.2, 0, -0.0539692, 0, -0.1925807, -0.011226773, 0.003312409, 0.034760788)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=143073553]
-shape = SubResource("CylinderShape3D_lcj1n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.12529486, 0)
+shape = SubResource("SphereShape3D_1ht8x")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=963895140]
-transform = Transform3D(1, 0, 0, 0, 0.9848078, 0.1736482, 0, -0.1736482, 0.9848078, 0, 0.01327116, 0.21971032)
+transform = Transform3D(1, 0, 0, 0, 0.9848077, 0.17364818, 0, -0.17364818, 0.9848077, 0, 0.1, 0.3)
+
+[node name="HAT_GLB" parent="." unique_id=1201042728 instance=ExtResource("2_kt4jx")]
+transform = Transform3D(-0.03, 0, -2.6226832e-09, 0, 0.03, 0, 2.6226832e-09, 0, -0.03, -0.012961984, -0.16085398, -0.008399725)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

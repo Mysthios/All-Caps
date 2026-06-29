@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var anim_player = $AnimationPlayer
+@onready var anim_player = $Bar/AnimationPlayer
 
 func open_bar():
 	anim_player.play("BarOpen")
