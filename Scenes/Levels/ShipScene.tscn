@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://0lhw0rx5gf"]
-
-[ext_resource type="PackedScene" uid="uid://c08l0xsaek7ns" path="res://Assets/Models/Small Cargo Ship (1).glb" id="1_85f18"]
-
-[node name="Sketchfab_Scene" unique_id=1208638005 instance=ExtResource("1_85f18")]

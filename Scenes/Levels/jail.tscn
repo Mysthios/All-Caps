@@ -1,8 +1,6 @@
 [gd_scene format=4 uid="uid://b2yhue6buh3c5"]
 
-[ext_resource type="Material" uid="uid://b7hge802pa85x" path="res://Interiors A/LoafbrrAssets/Interiors_A/Materials/Surface_Wall_A_Mat.tres" id="1_s1gpl"]
 [ext_resource type="Texture2D" uid="uid://bb4gbxqaxphuq" path="res://Assets/Models/Interior/Surface_Wall_A_Diffuse_1K_A.png" id="1_s5ygp"]
-[ext_resource type="Material" uid="uid://cjg55dhp2epy1" path="res://Interiors A/LoafbrrAssets/Interiors_A/Materials/Misc_Trim_Mat.tres" id="2_f066j"]
 [ext_resource type="Script" uid="uid://bxdps0gwp3kpw" path="res://Scripts/Managers/bar_1.gd" id="3_2g2bi"]
 [ext_resource type="Material" uid="uid://b7hge802pa85x" path="res://Assets/Models/Interior/Interiors_A/Materials/Surface_Wall_A_Mat.tres" id="5_vlodp"]
 [ext_resource type="Material" uid="uid://cjg55dhp2epy1" path="res://Assets/Models/Interior/Interiors_A/Materials/Misc_Trim_Mat.tres" id="6_ig3xk"]
@@ -32,7 +30,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 102,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAABAAMABAADAAUABQAGAAQABwAGAAUABwAIAAYACQAIAAcABwAKAAkABwALAAoADAAKAAsADAALAA0ADgAPABAADgARAA8AEgAQAA8AEgATABAAEwASABQAFQATABQAFQAUABYAFwAVABYAFQAXABgAFQAYABkAGgAZABgAGgAbABkAHAAdAB4AHAAfAB0AHgAdACAAHgAgACEAIgAjACQAIgAlACMAJgAnACgAJgApACcAKAAnACoAKAAqACsA"),
-"material": ExtResource("1_s1gpl"),
+"material": ExtResource("5_vlodp"),
 "name": "Surface_Wall_A",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -135,7 +133,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 144,
 "index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0AQABBAEIAQABDAEEARABFAEYARABHAEUASABJAEoASABLAEkATABNAE4ATABPAE0AUABRAFIAUABTAFEAVABVAFYAVABXAFUAWABZAFoAWABbAFkAXABdAF4AXABfAF0A"),
-"material": ExtResource("2_f066j"),
+"material": ExtResource("6_ig3xk"),
 "name": "MiscTrim",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -205,6 +203,8 @@ transform = Transform3D(-4.371139e-08, -1, 0, 0.99969625, -4.3698112e-08, -0.024
 mesh = SubResource("ArrayMesh_2g2bi")
 
 [node name="Stair_Rail_2m" type="StaticBody3D" parent="Bar/Bar2" unique_id=746628837]
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bar/Bar2/Stair_Rail_2m" unique_id=1674124217]
 shape = SubResource("ConcavePolygonShape3D_s5ygp")
@@ -214,6 +214,8 @@ transform = Transform3D(-4.371139e-08, -1, 0, 0.99969625, -4.3698112e-08, -0.024
 mesh = SubResource("ArrayMesh_2g2bi")
 
 [node name="Stair_Rail_2m" type="StaticBody3D" parent="Bar/Bar1" unique_id=1853948439]
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bar/Bar1/Stair_Rail_2m" unique_id=1124484002]
 shape = SubResource("ConcavePolygonShape3D_s5ygp")

@@ -1,12 +1,16 @@
 [gd_scene format=4 uid="uid://dro5c227bdlp5"]
 
 [ext_resource type="PackedScene" uid="uid://b2yhue6buh3c5" path="res://Scenes/Levels/jail.tscn" id="1_dvut1"]
-[ext_resource type="Material" uid="uid://b7hge802pa85x" path="res://Assets/Models/Interior/Interiors_A/Materials/Surface_Wall_A_Mat.tres" id="2_a18mf"]
-[ext_resource type="Material" uid="uid://canwefv74vsd6" path="res://Assets/Models/Interior/Interiors_A/Materials/Door_A_Mat.tres" id="3_ea4ka"]
-[ext_resource type="Material" uid="uid://dn04f3wubif1c" path="res://Assets/Models/Interior/Interiors_A/Materials/Glass_Mat.tres" id="4_bm6vw"]
+[ext_resource type="Material" uid="uid://b7hge802pa85x" path="res://Interiors A/LoafbrrAssets/Interiors_A/Materials/Surface_Wall_A_Mat.tres" id="2_a18mf"]
+[ext_resource type="Material" uid="uid://canwefv74vsd6" path="res://Interiors A/LoafbrrAssets/Interiors_A/Materials/Door_A_Mat.tres" id="3_ea4ka"]
+[ext_resource type="Material" uid="uid://dn04f3wubif1c" path="res://Interiors A/LoafbrrAssets/Interiors_A/Materials/Glass_Mat.tres" id="4_bm6vw"]
+[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://Scenes/Levels/Smooth Stair Handling CSGStairMaker3D.tscn" id="8_l5sbi"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_tfuws"]
-size = Vector3(10, 0.5, 20)
+[sub_resource type="BoxMesh" id="BoxMesh_v6wy8"]
+size = Vector3(10, 0.5, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6pun2"]
+size = Vector3(10, 0.5, 40)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mnuin"]
 size = Vector3(0.3, 10, 40)
@@ -19,12 +23,6 @@ size = Vector3(0.3, 10, 40)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_65bdh"]
 size = Vector3(0.3, 10, 40)
-
-[sub_resource type="BoxMesh" id="BoxMesh_v6wy8"]
-size = Vector3(10, 0.5, 40)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6pun2"]
-size = Vector3(10, 0.5, 40)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sf4f2"]
 _surfaces = [{
@@ -111,17 +109,44 @@ data = PackedVector3Array(0.5, 2.25, 0.10000004, -0.5, 2.25, -0.099999964, -0.5,
 
 [node name="Ship" type="Node3D" unique_id=1295813440]
 
+[node name="CSGStairMaker3D2" parent="." unique_id=656879898 instance=ExtResource("8_l5sbi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, -21.5)
+use_collision = true
+size = Vector3(1, 1, 8)
+num_stairs = 10
+
 [node name="Room1" type="Node3D" parent="." unique_id=1107509109]
 
-[node name="Ceiling" type="StaticBody3D" parent="Room1" unique_id=401307983]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.271328, 6.5844173, 0)
+[node name="Label" type="Label" parent="Room1" unique_id=919917875]
+visibility_layer = 32769
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.5
+offset_right = 108.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "I apologize for this unfinished project. The initial concept
+ was perhaps too ambitious, but we sincerely make pinky promise to complete this game whatever the cost until it is fully playable.
+WASD for move, RMB for throw hat, E for release enemy"
+horizontal_alignment = 1
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/Ceiling" unique_id=1570468619]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.75882, -2.9588041, 9.9738455)
-mesh = SubResource("BoxMesh_tfuws")
+[node name="Ceiling" type="StaticBody3D" parent="Room1" unique_id=1402509407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3689387, 0)
+visible = false
+collision_mask = 16777215
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/Ceiling" unique_id=1985678812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3145156, 0)
+mesh = SubResource("BoxMesh_v6wy8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Ceiling" unique_id=1524544095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41673803, 0)
+shape = SubResource("BoxShape3D_6pun2")
 
 [node name="WallLeft" type="StaticBody3D" parent="Room1" unique_id=1436016850]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.042349, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.262294, 5, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/WallLeft" unique_id=1538694072]
 mesh = SubResource("BoxMesh_mnuin")
@@ -130,7 +155,8 @@ mesh = SubResource("BoxMesh_mnuin")
 shape = SubResource("BoxShape3D_v44ph")
 
 [node name="WallRight" type="StaticBody3D" parent="Room1" unique_id=398206714]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.711812, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.711812, 0, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Room1/WallRight" unique_id=949347224]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5730658, 0)
@@ -139,11 +165,6 @@ mesh = SubResource("BoxMesh_11jds")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/WallRight" unique_id=1241127823]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.59297, 0)
 shape = SubResource("BoxShape3D_65bdh")
-
-[node name="WallBack" type="StaticBody3D" parent="Room1" unique_id=799566221]
-visible = false
-
-[node name="WallFront" type="StaticBody3D" parent="Room1" unique_id=924164294]
 
 [node name="Jail" parent="Room1" unique_id=419574687 instance=ExtResource("1_dvut1")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.020049, 2, 7.191898)
@@ -164,23 +185,13 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.0064764, 2, 4.191)
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=148221332]
+collision_mask = 16777215
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1695681678]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35907602, 0)
 mesh = SubResource("BoxMesh_v6wy8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=397282123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41673803, 0)
-shape = SubResource("BoxShape3D_6pun2")
-
-[node name="Floor2" type="StaticBody3D" parent="." unique_id=1402509407]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3689387, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor2" unique_id=1985678812]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3145156, 0)
-mesh = SubResource("BoxMesh_v6wy8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2" unique_id=1524544095]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41673803, 0)
 shape = SubResource("BoxShape3D_6pun2")
 
@@ -192,3 +203,9 @@ mesh = SubResource("ArrayMesh_i42e7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_3m_Window_A/Wall_3m_Window_A" unique_id=1915310529]
 shape = SubResource("ConcavePolygonShape3D_l5sbi")
+
+[node name="CSGStairMaker3D" parent="." unique_id=1975580527 instance=ExtResource("8_l5sbi")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -20.5)
+use_collision = true
+size = Vector3(1, 1, 9)
+num_stairs = 10
