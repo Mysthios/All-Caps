@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://deadkmhvr03tc"]
+
+[ext_resource type="PackedScene" uid="uid://ddio0ae12v34r" path="res://Assets/Models/LeversAndSwitches/FBX/Lever2.fbx" id="1_75v64"]
+[ext_resource type="Script" uid="uid://dir64mtgwmyf4" path="res://Scripts/Managers/lever.gd" id="2_qfv1l"]
+[ext_resource type="Texture2D" uid="uid://bolggc8sgaucs" path="res://Assets/Models/LeversAndSwitches/texture/Gradients.jpg" id="3_nxyfy"]
+[ext_resource type="Script" uid="uid://c1paj7wv3v72b" path="res://Scripts/Interacable/lever.gd" id="4_qfv1l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrtim"]
+albedo_texture = ExtResource("3_nxyfy")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qfv1l"]
+
+[node name="Lever" unique_id=1326017232 instance=ExtResource("1_75v64")]
+script = ExtResource("2_qfv1l")
+
+[node name="Skeleton3D" parent="Lever2Bones" parent_id_path=PackedInt32Array(738067531) index="0" unique_id=962265549]
+bones/2/rotation = Quaternion(0.0052323374, -0.00066929875, 0.20296448, 0.979172)
+
+[node name="Lever2" parent="Lever2Bones/Skeleton3D" index="0" unique_id=2078808628]
+material_override = SubResource("StandardMaterial3D_wrtim")
+
+[node name="InteractArea" type="Area3D" parent="." index="2" unique_id=2075357525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5925087, 0)
+script = ExtResource("4_qfv1l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea" index="0" unique_id=251408637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40216964, 0)
+shape = SubResource("SphereShape3D_qfv1l")
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_area_body_exited"]

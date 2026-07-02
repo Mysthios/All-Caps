@@ -9,9 +9,11 @@ const MAX_STEP_HEIGHT: float = 0.5
 
 @onready var camera_holder = $CameraHolder
 @onready var camera = $CameraHolder/Camera3D
+@onready var interact_ray = $CameraHolder/Camera3D/InteractRay
 @onready var hat_anchor = $HatAnchor
 @onready var anim_player = $Superhero_Male_FullBody/AnimationPlayer
 @onready var hud = $"../HUD"  # sesuaikan path kalau perlu
+
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var hat_instance = null
@@ -24,6 +26,8 @@ var _last_frame_was_on_floor = -INF
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	add_to_group("player")
+	interact_ray.add_exception(self)
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -51,6 +55,16 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("release_enemy") and possessed_enemy:
 		_release_enemy()
+
+	if event.is_action_pressed("interact") and possessed_enemy == null and not hat_out:
+		_try_interact()
+
+func _try_interact():
+	if interact_ray.is_colliding():
+		var collider = interact_ray.get_collider()
+		if collider.has_method("interact"):
+			collider.interact()
+
 
 func throw_hat():
 	hat_out = true
@@ -91,6 +105,17 @@ func _process(_delta):
 			
 			# kamera ngeliatin topi dari belakang
 			camera.look_at(hat_instance.global_position, Vector3.UP)
+			if not hat_out and possessed_enemy == null:
+				if interact_ray.is_colliding():
+					var collider = interact_ray.get_collider()
+					if collider.has_method("interact"):
+						$CanvasLayer/BoxContainer/InteractText.show()
+					else:
+						$CanvasLayer/BoxContainer/InteractText.hide()
+			else:
+				$CanvasLayer/BoxContainer/InteractText.hide()
+
+
 
 # Note to followers of my previous tutorials: This function has been simplified but does the same thing.
 func is_surface_too_steep(normal : Vector3) -> bool:
@@ -226,6 +251,7 @@ func _run_body_motion_(from: Transform3D, motion: Vector3, result = null) -> boo
 func _physics_process(delta):
 	if is_on_floor() or _snapped_to_stairs_last_frame: 
 		_last_frame_was_on_floor = Engine.get_physics_frames()
+
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 

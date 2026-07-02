@@ -24,7 +24,7 @@ shadow_enabled = true
 environment = SubResource("Environment_nbifx")
 
 [node name="Player" parent="." unique_id=795401960 instance=ExtResource("1_v6wy8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9352055, -11.563097)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8412676, 1.9352055, -0.3883133)
 
 [node name="HUD" parent="." unique_id=903617167 instance=ExtResource("3_nbifx")]
 

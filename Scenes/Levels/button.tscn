@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d4a1x31lu7wjt"]
+
+[ext_resource type="Texture2D" uid="uid://b7ltrj3qyeqa6" path="res://Assets/Models/button/Textured Button by Station1.png" id="1_4parh"]
+[ext_resource type="ArrayMesh" uid="uid://chjkisq1wbflj" path="res://Assets/Models/button/Textured Button.obj" id="2_c1wy3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_stgjc"]
+albedo_texture = ExtResource("1_4parh")
+
+[node name="Button" type="Node3D" unique_id=208741478]
+
+[node name="TexturedButton" type="MeshInstance3D" parent="." unique_id=1643276917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9711579, 0, -1.1202154)
+material_override = SubResource("StandardMaterial3D_stgjc")
+mesh = ExtResource("2_c1wy3")
